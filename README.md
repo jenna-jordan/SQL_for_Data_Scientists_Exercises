@@ -1,0 +1,1 @@
+# SQL_for_Data_Scientists_Exercises
