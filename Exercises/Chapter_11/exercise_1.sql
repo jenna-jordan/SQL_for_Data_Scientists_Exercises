@@ -1,10 +1,12 @@
--- Chapter 11, Exercise 1
---
--- Starting with the query associated with Figure 11.5, 
--- put the larger SELECT statement in a second CTE,
--- and write a query that queries from its results to 
--- display the current record sales and associated market date.
--- Can you think of another way to generate the same results? 
+/*
+Chapter 11, Exercise 1
+
+Starting with the query associated with Figure 11.5, 
+put the larger SELECT statement in a second CTE,
+and write a query that queries from its results to 
+display the current record sales and associated market date.
+Can you think of another way to generate the same results? 
+*/
 
 -- Original Query
 
@@ -66,7 +68,7 @@ GROUP BY
 )
 
 -- first option
-SELECT *
+SELECT market_date, sales
 FROM record_sales_per_market_date
 WHERE sales_record_set = "YES"
 ORDER BY market_date DESC 
@@ -74,5 +76,6 @@ LIMIT 1;
 
 -- second option 
 
-
-
+SELECT market_date, sales
+FROM record_sales_per_market_date
+WHERE sales = (SELECT max(sales) FROM record_sales_per_market_date);
